@@ -3,7 +3,7 @@ import urllib2
 import datetime as dt
 import os as os
 
-start_stock = 0
+start_stock = 1000
 
 path = "/Users/David/Documents/Market_Data_Main/"
 
@@ -135,10 +135,10 @@ companylist = None
 companylist = list(pd.read_csv(path+ 'companylist.csv'))
 print companylist
 
-
+print(len(companylist), start_stock)
 # Sets up iteration over <1001 stocks in order to prevent Google timeout
 if start_stock + 1000 < len(companylist):
-    companylist = companylist[start_stock:1000]
+    companylist = companylist[start_stock:start_stock + 1000]
 elif start_stock < len(companylist):
     companylist = companylist[start_stock:]
 else:
