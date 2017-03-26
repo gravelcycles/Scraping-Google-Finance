@@ -1,4 +1,4 @@
-# ScrapeGoogleFinance
+# Scrape Google Finance
 
 This script scrapes Google Finance (google.com/finance/getprices) for NASDAQ price for minute-by-minute quotes. The data is then organized by stock and by day.
 
