@@ -90,10 +90,11 @@ def add_company_to_day(stock_data):
         todays_data = stock_data[stock_date_stamp == date]
 
         # If the file already exists, appends data. Otherwise, creates new file
-        if date_csv in stock_by_day_files:
-            todays_data.to_csv(path + "Stocks_By_Date/" + date_csv, header=False, index=False)
-        else:
-            todays_data.to_csv(path + "Stocks_By_Date/" + date_csv, header=True, index=False)
+        with open(path + "Stocks_By_Date/" + date_csv, 'a') as file:
+            if date_csv in stock_by_day_files:
+                todays_data.to_csv(file, header=False, index=False)
+            else:
+                todays_data.to_csv(file, header=True, index=False)
 
         files_opened.add(date_csv)
         stock_by_day_files.add(date_csv)
@@ -135,7 +136,6 @@ companylist = None
 companylist = list(pd.read_csv(path+ 'companylist.csv'))
 print companylist
 
-print(len(companylist), start_stock)
 # Sets up iteration over <1001 stocks in order to prevent Google timeout
 if start_stock + 1000 < len(companylist):
     companylist = companylist[start_stock:start_stock + 1000]
